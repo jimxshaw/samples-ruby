@@ -1921,3 +1921,79 @@ Migrating to CreateComments (20170712220845)
             FROM sqlite_temp_master
             WHERE name='index_comments_on_article_id' AND type='index'
 [0m
+
+
+Started GET "/articles" for ::1 at 2017-07-12 17:45:34 -0500
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by ArticlesController#index as HTML
+  [1m[35mArticle Load (0.2ms)[0m  SELECT "articles".* FROM "articles"
+  Rendered articles/index.html.erb within layouts/application (3.8ms)
+Completed 200 OK in 87ms (Views: 80.1ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/assets/comments.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2017-07-12 17:45:34 -0500
+
+
+Started GET "/assets/comments.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2017-07-12 17:45:34 -0500
+
+
+Started GET "/" for ::1 at 2017-07-12 17:45:38 -0500
+Processing by WelcomeController#index as HTML
+  Rendered welcome/index.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 20ms (Views: 19.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/articles" for ::1 at 2017-07-12 17:45:40 -0500
+Processing by ArticlesController#index as HTML
+  [1m[36mArticle Load (0.2ms)[0m  [1mSELECT "articles".* FROM "articles"[0m
+  Rendered articles/index.html.erb within layouts/application (1.9ms)
+Completed 200 OK in 19ms (Views: 18.4ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/articles/4" for ::1 at 2017-07-12 17:45:45 -0500
+Processing by ArticlesController#show as HTML
+  Parameters: {"id"=>"4"}
+  [1m[35mArticle Load (0.2ms)[0m  SELECT  "articles".* FROM "articles" WHERE "articles"."id" = ? LIMIT 1  [["id", 4]]
+  [1m[36mComment Load (0.3ms)[0m  [1mSELECT "comments".* FROM "comments" WHERE "comments"."article_id" = ?[0m  [["article_id", 4]]
+  Rendered articles/show.html.erb within layouts/application (27.7ms)
+Completed 200 OK in 46ms (Views: 43.9ms | ActiveRecord: 0.7ms)
+
+
+Started POST "/articles/4/comments" for ::1 at 2017-07-12 17:46:01 -0500
+Processing by CommentsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"jhzY22sTEWEsnd6wTTnrgPU25BPGlv+wu85Nd54YFQRfZbemMmEbWP+KV4ObOTQ2QyNFsKjaJ4pw5AA93/f8DQ==", "comment"=>{"commenter"=>"James", "body"=>"Unbearable outside."}, "commit"=>"Create Comment", "article_id"=>"4"}
+  [1m[35mArticle Load (0.1ms)[0m  SELECT  "articles".* FROM "articles" WHERE "articles"."id" = ? LIMIT 1  [["id", 4]]
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "comments" ("commenter", "body", "article_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["commenter", "James"], ["body", "Unbearable outside."], ["article_id", 4], ["created_at", "2017-07-12 22:46:01.628342"], ["updated_at", "2017-07-12 22:46:01.628342"]]
+  [1m[36m (0.6ms)[0m  [1mcommit transaction[0m
+Redirected to http://localhost:8080/articles/4
+Completed 302 Found in 4ms (ActiveRecord: 1.0ms)
+
+
+Started GET "/articles/4" for ::1 at 2017-07-12 17:46:01 -0500
+Processing by ArticlesController#show as HTML
+  Parameters: {"id"=>"4"}
+  [1m[35mArticle Load (0.1ms)[0m  SELECT  "articles".* FROM "articles" WHERE "articles"."id" = ? LIMIT 1  [["id", 4]]
+  [1m[36mComment Load (0.1ms)[0m  [1mSELECT "comments".* FROM "comments" WHERE "comments"."article_id" = ?[0m  [["article_id", 4]]
+  Rendered articles/show.html.erb within layouts/application (2.5ms)
+Completed 200 OK in 20ms (Views: 18.8ms | ActiveRecord: 0.2ms)
+
+
+Started POST "/articles/4/comments" for ::1 at 2017-07-12 17:46:18 -0500
+Processing by CommentsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"BErCUt+3rPR4eHU8+1LXVjQdOaMFO2l3VyjiAmqr/BTVM60vhsWmzatv/A8tUgjgggiYAGt3sU2cAq9IK0QVHQ==", "comment"=>{"commenter"=>"Thomas Jefferson", "body"=>"Agreed!"}, "commit"=>"Create Comment", "article_id"=>"4"}
+  [1m[35mArticle Load (0.1ms)[0m  SELECT  "articles".* FROM "articles" WHERE "articles"."id" = ? LIMIT 1  [["id", 4]]
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "comments" ("commenter", "body", "article_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["commenter", "Thomas Jefferson"], ["body", "Agreed!"], ["article_id", 4], ["created_at", "2017-07-12 22:46:18.900543"], ["updated_at", "2017-07-12 22:46:18.900543"]]
+  [1m[36m (0.5ms)[0m  [1mcommit transaction[0m
+Redirected to http://localhost:8080/articles/4
+Completed 302 Found in 4ms (ActiveRecord: 0.9ms)
+
+
+Started GET "/articles/4" for ::1 at 2017-07-12 17:46:18 -0500
+Processing by ArticlesController#show as HTML
+  Parameters: {"id"=>"4"}
+  [1m[35mArticle Load (0.1ms)[0m  SELECT  "articles".* FROM "articles" WHERE "articles"."id" = ? LIMIT 1  [["id", 4]]
+  [1m[36mComment Load (0.1ms)[0m  [1mSELECT "comments".* FROM "comments" WHERE "comments"."article_id" = ?[0m  [["article_id", 4]]
+  Rendered articles/show.html.erb within layouts/application (2.3ms)
+Completed 200 OK in 21ms (Views: 19.5ms | ActiveRecord: 0.2ms)
