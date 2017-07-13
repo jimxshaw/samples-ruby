@@ -1,4 +1,7 @@
 class ArticlesController < ApplicationController
+    # Users must be authenticated to use all actions other than index and show.
+    http_basic_authenticate_with name: "dhh", password: "secret", except: [:index, :show]
+
     # Convention dictates the actions in the following order:
     # index, show, new, edit, create, update, destroy
 

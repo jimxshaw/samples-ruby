@@ -1,4 +1,8 @@
 class CommentsController < ApplicationController
+
+    # Only authenticated users can use the destroy action to delete comments. 
+    http_basic_authenticate_with name: "dhh", password: "secret", only: :destroy
+
     # Convention dictates the actions in the following order:
     # index, show, new, edit, create, update, destroy
 
