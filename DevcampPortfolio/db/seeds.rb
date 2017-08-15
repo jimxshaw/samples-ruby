@@ -1,7 +1,16 @@
+3.times do |topic|
+  Topic.create!(
+         title: "Topic #{topic}"
+  )
+end
+
+puts "3 topics created"
+
 10.times do |blog|
   Blog.create!(
       title: "My Blog Post #{blog}",
-      body: "Moleskine ship it responsive sticky note pair programming innovate user centered design parallax entrepreneur pitch deck. Sticky note waterfall is so 2000 and late integrate experiential responsive fund pitch deck viral ideate parallax SpaceTeam engaging. User centered design personas bootstrapping pair programming parallax ship it co-working 360 campaign ship it. Minimum viable product ideate physical computing co-working thinker-maker-doer parallax pitch deck latte prototype responsive venture capital entrepreneur."
+      body: "Moleskine ship it responsive sticky note pair programming innovate user centered design parallax entrepreneur pitch deck. Sticky note waterfall is so 2000 and late integrate experiential responsive fund pitch deck viral ideate parallax SpaceTeam engaging. User centered design personas bootstrapping pair programming parallax ship it co-working 360 campaign ship it. Minimum viable product ideate physical computing co-working thinker-maker-doer parallax pitch deck latte prototype responsive venture capital entrepreneur.",
+      topic_id: 1
   )
 end
 
