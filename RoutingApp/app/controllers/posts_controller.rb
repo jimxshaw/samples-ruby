@@ -3,5 +3,11 @@ class PostsController < ApplicationController
 
   end
 
+  def missing
 
+  end
+
+  def new
+
+  end
 end
